@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Melodify - Music Player</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+    <div class="app">
+
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                <i class="fa-solid fa-headphones"></i>
+                <span>Melodify</span>
+            </div>
+
+            <nav>
+
+                <p class="menu-title">MENU</p>
+
+                <button class="nav-item active" data-section="home">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Home</span>
+                </button>
+
+                <button class="nav-item" data-section="favorites">
+                    <i class="fa-solid fa-heart"></i>
+                    <span>Favorites</span>
+                </button>
+
+                <button class="nav-item" data-section="queue">
+                    <i class="fa-solid fa-list"></i>
+                    <span>Queue</span>
+                </button>
+
+                <p class="menu-title">YOUR MUSIC</p>
+
+                <button class="nav-item" id="addSongBtn">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Add Songs</span>
+                </button>
+
+                <input
+                    type="file"
+                    id="songInput"
+                    accept="audio/*"
+                    multiple
+                    hidden
+                >
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="profile">
+                    <div class="profile-image">
+                        R
+                    </div>
+
+                    <div>
+                        <h4>Music Lover</h4>
+                        <p>Premium User</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <main class="main">
+
+
+            <header class="topbar">
+
+                <div class="mobile-logo">
+                    <i class="fa-solid fa-headphones"></i>
+                    Melodify
+                </div>
+
+                <div class="search-box">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search songs, artists..."
+                    >
+
+                </div>
+
+                <div class="top-actions">
+
+                    <button id="themeBtn">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+
+                    <button>
+                        <i class="fa-regular fa-bell"></i>
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <section id="homeSection">
+
+
+                <section class="hero">
+
+                    <div class="hero-content">
+
+                        <span class="hero-label">
+                            <i class="fa-solid fa-fire"></i>
+                            TRENDING NOW
+                        </span>
+
+                        <h1>
+                            Feel the music.<br>
+                            <span>Live the moment.</span>
+                        </h1>
+
+                        <p>
+                            Discover your favorite songs and create
+                            your own musical journey.
+                        </p>
+
+                        <button class="hero-btn" id="startListeningBtn">
+                            <i class="fa-solid fa-play"></i>
+                            Start Listening
+                        </button>
+
+                    </div>
+
+                    <div class="hero-image">
+                        <div class="vinyl">
+                            <div class="vinyl-center"></div>
+                        </div>
+                    </div>
+
+                </section>
+
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Popular Songs</h2>
+                        <p>Listen to what's trending</p>
+                    </div>
+
+                    <button id="viewAllBtn">
+                        View All
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+                <div class="song-grid" id="songGrid"></div>
+
+                <div class="section-header recently-header">
+
+                    <div>
+                        <h2>Recently Played</h2>
+                        <p>Your listening history</p>
+                    </div>
+
+                </div>
+
+                <div class="recent-list" id="recentList"></div>
+
+            </section>
+
+
+            <section id="favoritesSection" class="hidden">
+
+                <div class="page-title">
+
+                    <div>
+                        <h1>Your Favorites</h1>
+                        <p>Songs you love the most</p>
+                    </div>
+
+                    <i class="fa-solid fa-heart favorite-big"></i>
+
+                </div>
+
+                <div class="favorite-list" id="favoriteList"></div>
+
+            </section>
+
+            <section id="queueSection" class="hidden">
+
+                <div class="page-title">
+
+                    <div>
+                        <h1>Playing Queue</h1>
+                        <p>Songs waiting to be played</p>
+                    </div>
+
+                    <i class="fa-solid fa-list queue-big"></i>
+
+                </div>
+
+                <div class="queue-list" id="queueList"></div>
+
+            </section>
+
+        </main>
+
+
+        <div class="player">
+
+            <div class="current-song">
+
+                <img
+                    id="playerCover"
+                    src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=200"
+                    alt="Album"
+                >
+
+                <div class="current-info">
+
+                    <h4 id="playerTitle">
+                        Select a song
+                    </h4>
+
+                    <p id="playerArtist">
+                        Artist
+                    </p>
+
+                </div>
+
+                <button id="playerFavorite">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+            </div>
+
+
+            <div class="player-center">
+
+                <div class="controls">
+
+                    <button id="shuffleBtn">
+                        <i class="fa-solid fa-shuffle"></i>
+                    </button>
+
+                    <button id="previousBtn">
+                        <i class="fa-solid fa-backward-step"></i>
+                    </button>
+
+                    <button
+                        class="play-btn"
+                        id="playBtn"
+                    >
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+
+                    <button id="nextBtn">
+                        <i class="fa-solid fa-forward-step"></i>
+                    </button>
+
+                    <button id="repeatBtn">
+                        <i class="fa-solid fa-repeat"></i>
+                    </button>
+
+                </div>
+
+
+                <div class="progress-container">
+
+                    <span id="currentTime">
+                        0:00
+                    </span>
+
+                    <input
+                        type="range"
+                        id="progress"
+                        min="0"
+                        max="100"
+                        value="0"
+                    >
+
+                    <span id="duration">
+                        0:00
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="volume-control">
+
+                <i
+                    class="fa-solid fa-volume-high"
+                    id="volumeIcon"
+                ></i>
+
+                <input
+                    type="range"
+                    id="volume"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="0.8"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <audio id="audio"></audio>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
